@@ -1,0 +1,138 @@
+﻿<Window x:Class="IwSearch.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IwSearch"
+        mc:Ignorable="d"
+        Title="Search" Height="600" Width="1125"
+        MinHeight="600"
+        MinWidth="1125"
+        Closing="Window_Closing">
+    <Grid>
+        <TabControl x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,2,0,0">
+            <TabItem x:Name="options_tab" Header="Options">
+                <Grid Background="#FFE5E5E5" Margin="0,1,0,-1">
+                    <Label x:Name="label" Content="Searching in files" HorizontalAlignment="Left" Margin="5,7,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="searchOnlyInTextFiles_checkBox" Content="Search only in text files" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" BorderBrush="#FFACACAC" Click="option_checkBox_Clicked"/>
+                    <ComboBox x:Name="searchType_comboBox" HorizontalAlignment="Left" Margin="11,48,0,0" VerticalAlignment="Top" Width="127" SelectionChanged="option_comboBox_SelectionChanged">
+                        <ComboBox.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                                <GradientStop Color="#FFE5E5E5" Offset="1"/>
+                                <GradientStop Color="#FFEFEFEF"/>
+                            </LinearGradientBrush>
+                        </ComboBox.Background>
+                        <ComboBoxItem Content="Require Line in file"/>
+                        <ComboBoxItem Content="Line can be in file"/>
+                        <ComboBoxItem Content="Don't search in file"/>
+                    </ComboBox>
+                    <Label x:Name="returnOnFirstInstanceOfLine_label" Content="Searching in files type" HorizontalAlignment="Left" Margin="137,46,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="returnOnFirstInstanceOfLine_checkBox" Content="Find all instances of line in file" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" BorderBrush="#FFACACAC" Click="option_checkBox_Clicked"/>
+                    <CheckBox x:Name="searchLargeFiles_checkBox" Content="Search large files to end" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" BorderBrush="#FFACACAC" Click="option_checkBox_Clicked" Checked="option_checkBox_Clicked"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab_Search" Header="Search">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="path_TextBox" Height="23" Margin="100,7,110,0" VerticalAlignment="Top"/>
+                    <Button x:Name="browse_button" Content="Browse" HorizontalAlignment="Right" Margin="0,7,7,0" VerticalAlignment="Top" Width="98" Height="23" Click="browse_button_Click"/>
+                    <TextBox x:Name="name_TextBox" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="239" Margin="100,38,0,0"/>
+                    <TextBox x:Name="inFile_TextBox" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="239" Margin="100,72,0,0"/>
+                    <TextBox x:Name="type_TextBox" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="239" Margin="100,104,0,0"/>
+                    <TextBox x:Name="minsize_TextBox" Height="22" Margin="100,137,0,0" VerticalAlignment="Top" Width="117" HorizontalAlignment="Left"/>
+                    <ComboBox x:Name="minsize_ComboBox" Margin="222,137,0,0" VerticalAlignment="Top" Width="117" Height="22" HorizontalAlignment="Left">
+                        <ComboBoxItem Content="Byte(s)"/>
+                        <ComboBoxItem Content="Kilobyte(s)"/>
+                        <ComboBoxItem Content="Megabyte(s)"/>
+                        <ComboBoxItem Content="Gigabyte(s)"/>
+                        <ComboBoxItem Content="Terabyte(s)"/>
+                    </ComboBox>
+                    <TextBox x:Name="maxsize_TextBox" Height="22" Margin="100,169,0,0" VerticalAlignment="Top" Width="117" HorizontalAlignment="Left" />
+                    <ComboBox x:Name="maxsize_ComboBox" Margin="222,169,0,0" VerticalAlignment="Top" Width="117" Height="22" HorizontalAlignment="Left">
+                        <ComboBoxItem Content="Byte(s)"/>
+                        <ComboBoxItem Content="Kilobyte(s)"/>
+                        <ComboBoxItem Content="Megabyte(s)"/>
+                        <ComboBoxItem Content="Gigabyte(s)"/>
+                        <ComboBoxItem Content="Terabyte(s)"/>
+                    </ComboBox>
+                    <DatePicker x:Name="minDateMod_date" HorizontalAlignment="Left" Margin="100,201,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="dash" Content="-" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="212,199,0,0" Height="27"/>
+                    <DatePicker x:Name="maxDateMod_date" HorizontalAlignment="Left" Margin="237,201,0,0" VerticalAlignment="Top"/>
+                    <DatePicker x:Name="minDateCre_date" HorizontalAlignment="Left" Margin="100,235,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="dash2" Content="-" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="212,233,0,0" Height="27"/>
+                    <DatePicker x:Name="maxDateCre_date" HorizontalAlignment="Left" Margin="237,235,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="startSearch_Button" Content="Start Search" Click="startSearch_Button_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="330" Margin="7,0,0,35" Height="23"/>
+                    <Button x:Name="stopSearch_Button" Content="Stop Search" Click="stopSearch_Button_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="330" Margin="7,0,0,7" Height="23"/>
+                    <Grid Margin="344,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="68*" MinHeight="200"/>
+                            <RowDefinition Height="4"/>
+                            <RowDefinition Height="39*" MinHeight="200"/>
+                        </Grid.RowDefinitions>
+                        <DataGrid x:Name="results_dataGrid" VerticalAlignment="Stretch" HeadersVisibility="Column" BorderBrush="#FF787878" SelectionChanged="results_dataGrid_SelectionChanged" AutoGenerateColumns="False" SelectionMode="Single" CanUserAddRows="False" CanUserSortColumns="True" CanUserReorderColumns="False" GridLinesVisibility="None" Background="White" Margin="0,38,7,0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" Binding="{Binding name}" Width="3*" IsReadOnly="True"/>
+                                <DataGridHyperlinkColumn Header="Path" Binding="{Binding path}" Width="3*" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Type" Binding="{Binding type}" Width="*" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Size" Binding="{Binding size}" Width="*" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Date Modified" Binding="{Binding dateModified}" Width="*" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Date Created" Binding="{Binding dateCreated}" Width="*" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Line" Binding="{Binding lineIndex}" Width="*" IsReadOnly="True"/>
+                            </DataGrid.Columns>
+                            <DataGrid.Resources>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Black" Opacity="1"/>
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="BorderThickness" Value="0" />
+                                </Style>
+                                <Style TargetType="Hyperlink">
+                                    <EventSetter Event="Click" Handler="hyperlink_Click"/>
+                                </Style>
+                            </DataGrid.Resources>
+                        </DataGrid>
+                        <GridSplitter HorizontalAlignment="Stretch" Grid.Row="1" Margin="0,0,7,0" Background="#FF999999"/>
+                        <RichTextBox x:Name="fileRead_textBox" Grid.Row="2" VerticalScrollBarVisibility="Auto" Margin="0,0,7,7" BorderBrush="#FF787878" Focusable="False" IsHitTestVisible="True" AllowDrop="False" FontFamily="Arial">
+                            <FlowDocument></FlowDocument>
+                        </RichTextBox>
+                    </Grid>
+                    <Label x:Name="path_Label" Content="Path" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,7,0,0" Height="23"/>
+                    <Label x:Name="name_Label" Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,35,0,0" Height="23"/>
+                    <Label x:Name="name_Label_Copy" Content="Line In File" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,69,0,0" Height="23" Width="90"/>
+                    <Label x:Name="type_Label" Content="Type" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="7,102,0,0" Height="26"/>
+                    <Label x:Name="minsize_Label" Content="Min Size" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,136,0,0" Height="24" Width="65"/>
+                    <Label x:Name="maxssize_Label" Content="Max Size" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,168,0,0" Height="24" Width="65"/>
+                    <Label x:Name="mod_Label" Content="Date Modified" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,201,0,0" Height="23"/>
+                    <Label x:Name="cre_Label" Content="Date Created" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,235,0,0" Height="23"/>
+                    <Separator HorizontalAlignment="Left" Height="8" Margin="10,265,0,0" VerticalAlignment="Top" Width="329"/>
+                    <Label x:Name="filesSearched_label" Content="Files searched:" HorizontalAlignment="Left" Margin="4,303,0,0" VerticalAlignment="Top" Width="86"/>
+                    <Label x:Name="filescontentsearched_label" Content="Files content searched:" HorizontalAlignment="Left" Margin="4,320,0,0" VerticalAlignment="Top" Width="135"/>
+                    <Label x:Name="elapsedTime_label" Content="Elapsed Time:" HorizontalAlignment="Left" Margin="4,269,0,0" VerticalAlignment="Top" Width="86"/>
+                    <Label x:Name="resultsFound_label" Content="Results found:" HorizontalAlignment="Left" Margin="4,337,0,0" VerticalAlignment="Top" Width="135"/>
+                    <Label x:Name="threadsSearching_label" Content="Threads searching:" HorizontalAlignment="Left" Margin="4,286,0,0" VerticalAlignment="Top" Width="135"/>
+                    <TextBlock x:Name="elapsedTime_textBlock" HorizontalAlignment="Left" Margin="139,274,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198"/>
+                    <TextBlock x:Name="filesSearched_textBlock" HorizontalAlignment="Left" Margin="139,308,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198"/>
+                    <TextBlock x:Name="filescontentsearched_textBlock" HorizontalAlignment="Left" Margin="139,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198"/>
+                    <TextBlock x:Name="resultsRound_textBlock" HorizontalAlignment="Left" Margin="139,342,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198"/>
+                    <TextBlock x:Name="threadsSearching_textBlock" HorizontalAlignment="Left" Margin="139,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198"/>
+                </Grid>
+            </TabItem>
+            <!--<TabItem x:Name="tab_Log" Header="Log">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="log_dataGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HeadersVisibility="Column" BorderBrush="#FF787878" MouseDoubleClick="dataGrid_MouseDoubleClick"  AutoGenerateColumns="False" CanUserAddRows="False" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserResizeColumns="False" SelectionMode="Single" GridLinesVisibility="None" Background="White" Margin="0,0,0,34">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Time" Binding="{Binding time}" Width="0.25*" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Data" Binding="{Binding data}" Width="0.75*" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                        <DataGrid.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Black" Opacity="1"/>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="BorderThickness" Value="0" />
+                            </Style>
+                        </DataGrid.Resources>
+                    </DataGrid>
+                    <Button x:Name="clearLog_button" Content="Clear Log" Click="clearLog_button_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="0,0,0,4"/>
+                </Grid>
+            </TabItem>-->
+        </TabControl>
+    </Grid>
+</Window>
+    
