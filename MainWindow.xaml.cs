@@ -23,6 +23,9 @@ namespace IwSearch {
             InitializeComponent();
             options = new Options();
             new Setup().Start(this, options);
+            if (Environment.GetCommandLineArgs().Length > 1) {
+                SetOriginalValues(Environment.GetCommandLineArgs());
+            }
         }
 
         //Window
@@ -31,6 +34,8 @@ namespace IwSearch {
         //Options tab
         private void option_checkBox_Clicked(object sender, RoutedEventArgs e) { options.SetCheckboxOption((CheckBox)sender); }
         private void option_comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { options.SetComboBoxOption((ComboBox)sender); }
+        private void enableSearching_Button_Click(object sender, RoutedEventArgs e) { new Setup().AddOrRemoveRegistryKey("Add"); }
+        private void removeSearching_Button_Click(object sender, RoutedEventArgs e) { new Setup().AddOrRemoveRegistryKey("Remove"); }
 
         //Search tab
         private void startSearch_Button_Click(object sender, RoutedEventArgs e) { Search(); }
@@ -42,6 +47,12 @@ namespace IwSearch {
         //Log tab
         private void dataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e) { /*OpenLogDataInMessageBox();*/ }
         private void clearLog_button_Click(object sender, RoutedEventArgs e) { /*ClearLog();*/ }
+
+        private void SetOriginalValues(string[] args) {
+            tabControl.SelectedValue = tab_Search;
+            path_TextBox.Text = args[1];
+            name_TextBox.Focus();
+        }
 
         //Creates new searcher thread
         private void Search() {
@@ -115,9 +126,13 @@ namespace IwSearch {
             fileRead_textBox.Document.Blocks.Clear();
             if(fileContents.Count() > 0) {
                 foreach(int position in positions) {
-                    string text = fileContents.Skip(position - 1).Take(1).First();
-                    Paragraph p = new Paragraph(new Run(position + " ---- " + text));
-                    fileRead_textBox.Document.Blocks.Add(p);
+                    try {
+                        string text = fileContents.Skip(position - 1).Take(1).First();
+                        Paragraph p = new Paragraph(new Run(position + " ---- " + text));
+                        fileRead_textBox.Document.Blocks.Add(p);
+                    } catch(Exception e) {
+                        Console.WriteLine("An error occured while reading from a file" + e);
+                    }
                 }
             } else {
                 fileRead_textBox.Document.Blocks.Add(new Paragraph(new Run("No Data In File")));

@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using static IwSearch.MiscStructsAndEnums;
 
 namespace IwSearch {
@@ -11,6 +14,8 @@ namespace IwSearch {
         public void Start(MainWindow mainWindow, Options options) {
             CreateSaveFileIfNeeded(options);
             LoadOptions(options);
+            if (!options.hasBeenOpend) AddOrRemoveRegistryKey("Add");
+            options.hasBeenOpend = true;
             DisplayOptions(mainWindow, options);
         }
 
@@ -28,6 +33,21 @@ namespace IwSearch {
             mainWindow.returnOnFirstInstanceOfLine_checkBox.IsChecked = options.returnMultipleLinesInFile;
             mainWindow.searchType_comboBox.SelectedIndex = (int)options.searchType;
             mainWindow.searchLargeFiles_checkBox.IsChecked = options.searchLargeFilesToEnd;
+        }
+
+        public void AddOrRemoveRegistryKey(string option) {
+            var process = new ProcessStartInfo(Environment.CurrentDirectory + "\\AddOrRemoveIwSearchFromContextMenus.exe", option);
+            process.UseShellExecute = true;
+            process.Verb = "runas";
+            try {
+                var action = Process.Start(process);
+            } catch(Exception e) {
+                Console.WriteLine(e);
+                MessageBox.Show("Admin privileges are required to add or remove the option to search " +
+                    "folders with IwSearch from Explorer. However, IwSearch will work " +
+                    "normally without admin privileges. This can be enabled " +
+                    "again from the 'Options' tab.", "Alert");
+            } 
         }
     }
 }

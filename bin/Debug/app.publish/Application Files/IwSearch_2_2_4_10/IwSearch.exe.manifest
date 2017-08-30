@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="IwSearch.exe" version="2.2.4.10" publicKeyToken="373a92a79e506c60" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="Resources\icon.ico" asmv2:publisher="IwSearch" co.v1:suiteName="iainw" asmv2:product="IwSearch" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="IwSearch" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="IwSearch.exe" parameters="" />
+  </entryPoint>
+  <co.v1:useManifestForTrust xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet version="1" class="System.Security.NamedPermissionSet" Name="LocalIntranet" Description="Default rights given to applications on the local intranet" Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!-- UAC Manifest Options
+             If you want to change the Windows User Account Control level replace the 
+             requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+            Specifying requestedExecutionLevel element will disable file and registry virtualization. 
+            Remove this element if your application requires this virtualization for backwards
+            compatibility.
+        -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="IwSearch.exe" size="73640">
+      <assemblyIdentity name="IwSearch" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>/4w7mBGBgagza/2Ml7CoPppqfoo3Tr1IRygOgcX/qfw=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Ookii.Dialogs.Wpf.dll" size="107696">
+      <assemblyIdentity name="Ookii.Dialogs.Wpf" version="1.0.0.0" publicKeyToken="0C15020868FD6249" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>BLjLVf9IGk9PmmC8PF4G7XjBKoZ3whFiHtz52EZ72CM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="AddOrRemoveIwSearchFromContextMenus.exe" size="6656">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>jVsbvYCobT6D0SJPbZV/f0qztvsm4QVAncy1RnniZ8Q=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="IwSearch.exe.config" size="189">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>6N7MliNbVJSIAIPrecIshMbZ7zEoKLr5SQvud4LDUOw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\icon.ico" size="15086">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>zrxgN+fCTaQ8YdenOuldc7FnZ04+RUoYaN3cEWj9dwA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <!-- A list of the Windows versions that this application has been tested on and is
+           is designed to work with. Uncomment the appropriate elements and Windows will 
+           automatically selected the most compatible environment. -->
+      <!-- Windows Vista -->
+      <!--<supportedOS Id="{e2011457-1546-43c5-a5fe-008deee3d3f0}" />-->
+      <!-- Windows 7 -->
+      <!--<supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}" />-->
+      <!-- Windows 8 -->
+      <!--<supportedOS Id="{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}" />-->
+      <!-- Windows 8.1 -->
+      <!--<supportedOS Id="{1f676c76-80e1-4239-95bb-83d0f6d0da78}" />-->
+      <!-- Windows 10 -->
+      <!--<supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />-->
+    </application>
+  </compatibility>
+<publisherIdentity name="CN=IAINPC\Iain" issuerKeyHash="3df377d43d0f07e8a49c2c569b7cbdbd3dda4955" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>CpQQIBWfX2PivKVHJChtN+0jZZUnuzZZOFMMi81JMzY=</DigestValue></Reference></SignedInfo><SignatureValue>u8M6eUVGpAOkPozkVtz601vdj/4NK9APFfX1lNGhSq/Evh093erMtq3tQzcCU3toloe6nyoqdGpBU2OLR2ZmDC04m1HedgvYeAmj90S0hLS50Z/1Q+EMy3OHlAnlkMqK1b3jvT8OwH6FPBj9IFtixJEQsH/v8Y1RecdZSmJmK/Y=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>5Yez+hm/GYbgvNFAKUZTcxEFyftVG+Lo9BHBBu0h1Td/xSNoKMvf9Qm5UuNV+hdS1OQWMqpEx70+e3d2pcDCJdceEP9r9e7P05NtISbw89HAI5ilFA29pzWIWLhLYH5k169tNFAX9X56JKiYNqIMf4BqdnnwVfqpoTFMEkLpw1E=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="363349cd8b0c53385936bb27956523ed376d282447a5bce2635f9f152010940a" Description="" Url=""><as:assemblyIdentity name="IwSearch.exe" version="2.2.4.10" publicKeyToken="373a92a79e506c60" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=IAINPC\Iain</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>uHtueo/5xCKWs5k/FE/GcUru3nUgcUtFDZmympgLZsA=</DigestValue></Reference></SignedInfo><SignatureValue>Q/VQlmVt2/XggdyC9IkuUFf8ZP/4ptVuyvTR/lg39WuQtSzI2DDMH9Kivr5K4NsGVxtv7jjygZ3Ww1pHSSvI/krFSiJjVbZtuSNvhrIK7ppu6sWYFjBxkYUmq26X086KTvIch5vcmUVs27x+ZdymCFUKyfnks+CU71JKm4V8Mlc=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>5Yez+hm/GYbgvNFAKUZTcxEFyftVG+Lo9BHBBu0h1Td/xSNoKMvf9Qm5UuNV+hdS1OQWMqpEx70+e3d2pcDCJdceEP9r9e7P05NtISbw89HAI5ilFA29pzWIWLhLYH5k169tNFAX9X56JKiYNqIMf4BqdnnwVfqpoTFMEkLpw1E=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIBxTCCAS6gAwIBAgIQV23uRlgFHYhNS+CBuylISjANBgkqhkiG9w0BAQsFADAhMR8wHQYDVQQDHhYASQBBAEkATgBQAEMAXABJAGEAaQBuMB4XDTE3MDQwMTAzMTIyOVoXDTE4MDQwMTA5MTIyOVowITEfMB0GA1UEAx4WAEkAQQBJAE4AUABDAFwASQBhAGkAbjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA5Yez+hm/GYbgvNFAKUZTcxEFyftVG+Lo9BHBBu0h1Td/xSNoKMvf9Qm5UuNV+hdS1OQWMqpEx70+e3d2pcDCJdceEP9r9e7P05NtISbw89HAI5ilFA29pzWIWLhLYH5k169tNFAX9X56JKiYNqIMf4BqdnnwVfqpoTFMEkLpw1ECAwEAATANBgkqhkiG9w0BAQsFAAOBgQB/gdn8W+Xv3P60RzX61LceitdLZ14IVfo4ksRqmvtHL8sC/uKBoE6uc300PK0aL90K9oELfEvfnEEgYuOXGOjv9Rm/G/PXvtUricjQQ7gyPL4yKuVDuvihoVk6jjp7DpfhWEwTpi02dq3/pujFtwSP+lFpLnWovICgOkUuKHe9Mg==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

@@ -16,6 +16,9 @@ namespace IwSearch {
         //Path to fileType file save
         public string varsSave;
 
+        //If the application has been opend
+        public bool hasBeenOpend;
+
         //If searcher shoul.d only search text file or not
         public bool searchOnlyInTextFiles;
 
@@ -31,9 +34,9 @@ namespace IwSearch {
         //If the searcher should stop at first match of line in file or keep going
         public bool returnMultipleLinesInFile;
 
+        //Maximuin lines to find in a file
         public int maxReturnLines;
 
-        //Search type can be
         //NeedsInFile
         //CanBeInFile
         //DoesntNeedSearch
@@ -42,6 +45,7 @@ namespace IwSearch {
         public Options() {
             save = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile).Replace("\\", "/") + "/Documents/IwSearch/";
             varsSave = save + "Vars/";
+            hasBeenOpend = false;
             searchOnlyInTextFiles = false;
             returnMultipleLinesInFile = false;
             searchType = SearchType.DoesntNeedSearch;
@@ -53,6 +57,7 @@ namespace IwSearch {
 
         public void Save() {
             using (StreamWriter sw = new StreamWriter(varsSave + "options.txt")) {
+                sw.WriteLine(hasBeenOpend);
                 sw.WriteLine(searchOnlyInTextFiles);
                 sw.WriteLine(searchType);
                 sw.WriteLine(maxBufferSize);
@@ -66,13 +71,14 @@ namespace IwSearch {
         public void Load() {
             try {
                 string[] options = File.ReadAllLines(varsSave + "options.txt");
-                searchOnlyInTextFiles = bool.Parse(options[0]);
-                searchType = (SearchType)Enum.Parse(typeof(SearchType), options[1]);
-                maxBufferSize = int.Parse(options[2]);
-                returnMultipleLinesInFile = bool.Parse(options[3]);
-                maxReturnLines = int.Parse(options[4]);
-                searchLargeFilesToEnd = bool.Parse(options[5]);
-                maxSearchIterations = int.Parse(options[6]);
+                hasBeenOpend = bool.Parse(options[0]);
+                searchOnlyInTextFiles = bool.Parse(options[1]);
+                searchType = (SearchType)Enum.Parse(typeof(SearchType), options[2]);
+                maxBufferSize = int.Parse(options[3]);
+                returnMultipleLinesInFile = bool.Parse(options[4]);
+                maxReturnLines = int.Parse(options[5]);
+                searchLargeFilesToEnd = bool.Parse(options[6]);
+                maxSearchIterations = int.Parse(options[7]);
             } catch (Exception e) {
                 //Options file is damaged in some form
                 Save();

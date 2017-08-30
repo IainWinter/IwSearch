@@ -30,13 +30,16 @@
                     <Label x:Name="returnOnFirstInstanceOfLine_label" Content="Searching in files type" HorizontalAlignment="Left" Margin="137,46,0,0" VerticalAlignment="Top"/>
                     <CheckBox x:Name="returnOnFirstInstanceOfLine_checkBox" Content="Find all instances of line in file" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" BorderBrush="#FFACACAC" Click="option_checkBox_Clicked"/>
                     <CheckBox x:Name="searchLargeFiles_checkBox" Content="Search large files to end" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" BorderBrush="#FFACACAC" Click="option_checkBox_Clicked" Checked="option_checkBox_Clicked"/>
+                    <!--<Label x:Name="label_Copy" Content="Other Options" HorizontalAlignment="Left" Margin="5,101,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="enableSearching_Button" Content="Enable searching from Explorer" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top" Width="185" Height="22" Click="enableSearching_Button_Click"/>
+                    <Button x:Name="removeSearching_Button" Content="Disable searching from Explorer" HorizontalAlignment="Left" Margin="10,155,0,0" VerticalAlignment="Top" Width="185" Height="22" Click="removeSearching_Button_Click"/>-->
                 </Grid>
             </TabItem>
             <TabItem x:Name="tab_Search" Header="Search">
                 <Grid Background="#FFE5E5E5">
                     <TextBox x:Name="path_TextBox" Height="23" Margin="100,7,110,0" VerticalAlignment="Top"/>
                     <Button x:Name="browse_button" Content="Browse" HorizontalAlignment="Right" Margin="0,7,7,0" VerticalAlignment="Top" Width="98" Height="23" Click="browse_button_Click"/>
-                    <TextBox x:Name="name_TextBox" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="239" Margin="100,38,0,0"/>
+                    <TextBox x:Name="name_TextBox" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="239" Margin="100,38,0,0" MaxLength="255"/>
                     <TextBox x:Name="inFile_TextBox" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="239" Margin="100,72,0,0"/>
                     <TextBox x:Name="type_TextBox" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="239" Margin="100,104,0,0"/>
                     <TextBox x:Name="minsize_TextBox" Height="22" Margin="100,137,0,0" VerticalAlignment="Top" Width="117" HorizontalAlignment="Left"/>

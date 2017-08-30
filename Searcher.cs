@@ -52,22 +52,26 @@ namespace IwSearch {
 
         private void SendInformation(MainWindow mainWindow) {
             mainWindow.UpdateInformation(filesSearched, filesContentSearched, threadsRunning, resultsFound, elapsedTime);
-
         }
 
         private void StartSearch(Options options, Results results) {
-            foreach (string r in GetStartRoot()) {
-                foreach (string d in Directory.GetDirectories(r)) {
-                    if (stop) break; //Kill thread when stop is true
+            Thread th = new Thread(() => {
+                foreach (string r in GetStartRoot()) {
+                    foreach (string d in Directory.GetDirectories(r)) {
+                        if (stop) break; //Kill thread when stop is true
 
-                    if (!new DirectoryInfo(d).Attributes.HasFlag(FileAttributes.Hidden)) {
-                        if (d.Contains(searchQuery.path)) {
-                            StartSearcherThread(d, options, results);
+                        if (!new DirectoryInfo(d).Attributes.HasFlag(FileAttributes.Hidden)) {
+                            if (d.Contains(searchQuery.path)) {
+                                StartSearcherThread(d, options, results);
+                            }
                         }
                     }
+                    StartRootSearcherThread(r, options, results);
                 }
-                StartRootSearcherThread(r, options, results);
-            }
+                Interlocked.Decrement(ref threadsRunning);
+            });
+            threadsRunning++;
+            th.Start();
         }
 
         public string[] GetStartRoot() {
@@ -77,12 +81,12 @@ namespace IwSearch {
 
         private void StartSearcherThread(string d, Options options, Results results) {
             ThreadPool.QueueUserWorkItem(new WaitCallback(SearchWrapper), new object[] { d, options, results });
-            threadsRunning++;
+            Interlocked.Increment(ref threadsRunning);
         }
 
         private void StartRootSearcherThread(string d, Options options, Results results) {
             ThreadPool.QueueUserWorkItem(new WaitCallback(SearchAllFilesInDirectoryWrapper), new object[] { d, options, results });
-            threadsRunning++;
+            Interlocked.Increment(ref threadsRunning);
         }
 
         private void SearchWrapper(object state) {
@@ -248,23 +252,6 @@ namespace IwSearch {
                 Array.Resize<char>(ref buffer, buffer.Length);
                 buffer[buffer.Length - 1] = (char)streamReader.Read();
             }
-
-            //Check for if the line to search for is split between 2 blocks
-            //else if (searchQuery.inFile.Contains(buffer[buffer.Length - 1])) {
-            //    int startIndex = searchQuery.inFile.IndexOf(buffer[buffer.Length - 1]);
-            //    int backIndex = 0;
-            //    for (int i = 0; i < startIndex; i++) {
-            //        if (buffer[buffer.Length - 1 - i] == searchQuery.inFile[startIndex - i]) {
-            //            backIndex++;
-            //        }
-            //    }
-            //    if (buffer.ToString().Substring(buffer.Length - backIndex).Equals(searchQuery.inFile.Substring(searchQuery.inFile.Length - backIndex))) {
-            //        Array.Resize<char>(ref buffer, buffer.Length + searchQuery.inFile.Length - 1 - backIndex);
-            //        for (int i = buffer.Length - (searchQuery.inFile.Length - 1 - startIndex); i < buffer.Length; i++) {
-            //            buffer[i] = (char)streamReader.Read();
-            //        }
-            //    }
-            //}
             return buffer;
         }
     }
